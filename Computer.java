@@ -1,65 +1,58 @@
 public class Computer extends StockGame
 {
-	private double cash;
+	private int cash;
 	
 	public Computer()
 	{
-		cash=500;
+		cash=50;
 	}
 	
 	public void buyStocks(int numstocks,String stockName)
 	{
 		if(stockName.equals("Yahoo"))
 		{
-		cash-=numstocks*getYahooPrice();
-		setYahooPrice(1+(.02*numstocks));
+			cash-=(numstocks*getYahooPrice());
+		
 		}
 		else if(stockName.equals("Google"))
 		{
-			cash-=numstocks*getGooglePrice();
-			setGooglePrice(1+(.02*numstocks));
+			cash-=(numstocks*getGooglePrice());
+		
 		}
 		else if(stockName.equals("Apple"))
 		{
-			cash-=numstocks*getApplePrice();
-			setApplePrice(1+(.02*numstocks));
+			cash-=(numstocks*getApplePrice());
+			
 		}
 		else if(stockName.equals("Disney"))
 		{
-			cash-=numstocks*getDisneyPrice();
-			setDisneyPrice(1+(.02*numstocks));
+			cash-=(numstocks*getDisneyPrice());
+			
 		}
-		else
-		{
-			cash=0000000;
-		}
+		
 	}
 	public void sellStocks(int numStocks,String stockName)
 	{
 		if(stockName.equals("Yahoo"))
 		{
-		cash+=numStocks*getYahooPrice();
-			setYahooPrice(1-(.02*numStocks));
+		cash+=(numStocks*getYahooPrice());
+			
 		}
 		else if(stockName.equals("Google"))
 		{
-			cash+=numStocks*getGooglePrice();
-			setGooglePrice(1-(.02*numStocks));
-		}
+			cash+=(numStocks*getGooglePrice());
+		}	
 		else if(stockName.equals("Apple"))
 		{
-			cash+=numStocks*getApplePrice();
-			setApplePrice(1-(.02*numStocks));
+			cash+=(numStocks*getApplePrice());
+			
 		}
 		else if(stockName.equals("Disney"))
 		{
-			cash+=numStocks*getDisneyPrice();
-			setDisneyPrice(1-(.02*numStocks));
+			cash+=(numStocks*getDisneyPrice());
+			
 		}
-		else
-		{
-			cash=cash;
-		}
+		
 		
 	}
 	public double getCash()
@@ -67,6 +60,3 @@ public class Computer extends StockGame
 	return cash;
 	}
 }
- 
- 
- 
