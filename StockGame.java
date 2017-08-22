@@ -1,36 +1,34 @@
- import java.util.ArrayList;
- 
  public class StockGame
 {
 	private static int YahooPrice;
 	private static int GooglePrice;
 	private static int ApplePrice;
 	private static int DisneyPrice;
-	private	static ArrayList<String> list;
+	private static String currentRandomEvent;
 	
 	
 	public StockGame()
 	{
-		YahooPrice=(int)(Math.random()*10);
+		YahooPrice=(int)(Math.random()*10+5);
 		GooglePrice=(int)(Math.random()*5+5);
-		ApplePrice=(int)(Math.random()*3);
-		DisneyPrice=(int)(Math.random()*5+2);
+		ApplePrice=(int)(Math.random()*10+5);
+		DisneyPrice=(int)(Math.random()*5+5);
 		
 	}
 	
-    public double getYahooPrice ()
+    public int getYahooPrice ()
     {
     return YahooPrice;
     }
-	public double getGooglePrice()
+	public int getGooglePrice()
 	{
 	return GooglePrice;
 	}
-	public double getApplePrice()
+	public int getApplePrice()
 	{
 		return ApplePrice;
 	}
-	public double getDisneyPrice()
+	public int getDisneyPrice()
 	{
 		return DisneyPrice;
 	}
@@ -55,63 +53,77 @@
 		DisneyPrice=(int)price;
 	}
 	
-	public void StockMarketCrash()
+	public void stockMarketCrash()
 	{	
-		double percentage=(int)(Math.random()*10+20);
-		YahooPrice*=(1-percentage);
-		GooglePrice*=(1-percentage);
-		ApplePrice*=(1-percentage);
-		DisneyPrice*=(1-percentage);
+		
+		YahooPrice=(int)(Math.random()*5);
+		GooglePrice=(int)(Math.random()*5);
+		ApplePrice=(int)(Math.random()*5);
+		DisneyPrice=(int)(Math.random()*5);
 	}
 	
-	public void TrumpBecomesPresident()
+	public void newPresident()
 	{
-		double percentage=(int)(Math.random()*10+10);
-		YahooPrice*=(1+percentage);
-		GooglePrice*=(1+percentage);
-		ApplePrice*=(1+percentage);
-		DisneyPrice*=(1+percentage);
+		
+		YahooPrice=(int)(Math.random()*5+2);
+		GooglePrice=(int)(Math.random()*5+2);
+		ApplePrice=(int)(Math.random()*5+2);
+		DisneyPrice=(int)(Math.random()*5+2);
 		
 	}
 	
-	public void AnikateBecomesPresident()
+	public void warBoom()
 	{
 	
-		double percentage=(int)(Math.random()*10+90);
-		YahooPrice*=(1-percentage);
-		GooglePrice*=(1-percentage);
-		ApplePrice*=(1-percentage);
-		DisneyPrice*=(1-percentage);
+		
+		YahooPrice=(int)(Math.random()*5+3);
+		GooglePrice=(int)(Math.random()*5+3);
+		ApplePrice=(int)(Math.random()*5+3);
+		DisneyPrice=(int)(Math.random()*5+3);
 	}
 	
-	public void SupplyShock()
+	public void supplyShock()
 	{
-		double percentage=(int)(Math.random()*40);
-		YahooPrice*=(1-percentage);
-		GooglePrice*=(1-percentage);
-		ApplePrice*=(1-percentage);
-		DisneyPrice*=(1-percentage);
+		
+		YahooPrice=(int)(Math.random()*5);
+		GooglePrice=(int)(Math.random()*5);
+		ApplePrice=(int)(Math.random()*5);
+		DisneyPrice=(int)(Math.random()*5);
 	}
 
-	public String pickRandomEvent()
+	public void pickRandomEvent()
 	{
-	list.add("SupplyShock");
-	list.add("AnikateBecomesPresident");
-	list.add("TrumpBecomesPresident");
-	list.add("StockMarketCrash");
-	int listLength=4;
-	int index=(int)Math.random()*listLength;
-	String randomPick=list.remove(index)+"()";
-	listLength--;
-	if(listLength<0)
+	int randomPick=((int)(Math.random()*4));
+	if (randomPick==0)
 	{
-		return("All random Events used up");
+		this.stockMarketCrash();
+		currentRandomEvent="Stock Market Crash";
 	}
-	return (randomPick);
+	else if (randomPick==1)
+	{
+		this.warBoom();
+		currentRandomEvent="WarBoom";
 	}
+	else if(randomPick==2)
+	{
+		this.supplyShock();
+		currentRandomEvent="Supply Shock";
+	}
+	else 
+	{
+		this.newPresident();
+		currentRandomEvent="New President";
+	}
+	
+	
+	}
+	
+	public String getCurrentRandomEvent()
+	{
+		return currentRandomEvent;
+	}
+	
 }
 
- 
- 
  
  
