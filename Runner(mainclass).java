@@ -12,7 +12,12 @@ public class Runner
 		Player user=new Player();
 		String action="";
 		System.out.println("The goal of the game is to beat the stock-trading robot by making a larger profit than the robot. You both have $50 dollars right now .You have 10 turns to win!");
-
+		
+		//Player Stocks:
+		int playerStocksYahoo=0;
+		 int playerStocksGoogle=0;
+		 int playerStocksDisney=0;
+		 int playerStocksApple=0;
 		//Initializing Robots turn values which will be used after users turn
 		int cash=(int)robot.getCash();
 		int numberStocksYahoo=0;
@@ -24,7 +29,7 @@ public class Runner
 		 int disneyBoughtPrice=0;
 		 int appleBoughtPrice=0;
 		 
-		for(turns=0;turns<10;turns++)
+		for(turns=1;turns<=10;turns++)
 		{
 			//Random Event Controller at beginning of turn
 			if(turns<10)
@@ -52,9 +57,9 @@ public class Runner
 		}
 		
 		System.out.println("New turn, Turn #: "+turns);		
-		System.out.println("Yahoo Price: "+game.getYahooPrice()+", Google Price: "+game.getGooglePrice()+", Apple Price: "+game.getApplePrice()+", Disney Price: "+game.getDisneyPrice());
+		System.out.println("Yahoo Price: "+game.getYahooPrice()+", Google Price: "+game.getGooglePrice()+",Disney Price: "+game.getDisneyPrice()+", Apple Price: "+game.getApplePrice());
 		System.out.println("Computer Profit: "+(robot.getCash()-50)+"\t Player Profit: "+(user.getCash()-50)+"\t Player Cash @ BeginningTurn: "+user.getCash()+"\t \tComputer Cash @ BeginningTurn: "+robot.getCash());
-		System.out.println("Enter action, format: Sell 5 Yahoo (Action, Number Of Stocks, Name of Stock)");
+		System.out.println("Enter action, format: Sell 5 Yahoo (Action, Number Of Stocks, Name of Stock) Name of Stock Must have first Capital letter!");
 		System.out.println("Once done the turn, enter: 'done'");
 		action="initial";
 		boolean keepGoing=true;
@@ -121,13 +126,46 @@ public class Runner
 		if((action.indexOf("sell")!=-1)|| (action.indexOf("Sell")!=-1))
 		{
 			user.sellStocks(numStocks, nameStock);
+			if(nameStock.equals("Yahoo"))
+			{
+				playerStocksYahoo-=numStocks;
+			}
+			if(nameStock.equals("Google"))
+			{
+				playerStocksGoogle-=numStocks;
+			}
+			if(nameStock.equals("Disney"))
+			{
+				playerStocksDisney-=numStocks;
+			}
+			if(nameStock.equals("Apple"))
+			{
+				playerStocksApple-=numStocks;
+			}
+			
 		}
 		else if((action.indexOf("Buy")!=-1)||(action.indexOf("buy")!=-1))
 		{
 			user.buyStocks(numStocks,nameStock);
+			if(nameStock.equals("Yahoo"))
+			{
+				playerStocksYahoo+=numStocks;
+			}
+			if(nameStock.equals("Google"))
+			{
+				playerStocksGoogle+=numStocks;
+			}
+			if(nameStock.equals("Disney"))
+			{
+				playerStocksDisney+=numStocks;
+			}
+			if(nameStock.equals("Apple"))
+			{
+				playerStocksApple+=numStocks;
+			}
 		}
-		System.out.println("Current Player Cash "+ user.getCash());
-		
+		System.out.print("Current Player Cash "+ user.getCash());
+		System.out.println("\t Player Stocks: Yahoo: "+playerStocksYahoo+" Google:"+playerStocksGoogle+" Disney: "+playerStocksDisney+" Apple: "+playerStocksApple);
 		
 		}
 		//End of Humans Turn/while loop
@@ -149,28 +187,29 @@ public class Runner
 					 
 					 
 					 //Selling Stocks
-					 System.out.println("Yahoo bought price" + yahooBoughtPrice);
 					 
+					 System.out.print("Computer Actions:");
 					 if(yahooPrice>yahooBoughtPrice && numberStocksYahoo>0)
 					 {
 						 robot.sellStocks(numberStocksYahoo, "Yahoo");
-						 System.out.println("Computer sold "+numberStocks+" Of Yahoo");
+						 System.out.print(" sold "+numberStocks+" Yahoo");
 					 }
 					 if(googlePrice>googleBoughtPrice && numberStocksGoogle>0)
 					 {
 						 robot.sellStocks(numberStocksGoogle, "Google");
-						 System.out.println("Computer sold "+numberStocks+" Of Google");
+						 System.out.print(" sold "+numberStocks+" Google");
 					 } 
 					 if(disneyPrice>disneyBoughtPrice && numberStocksDisney>0)
 					 {
 						 robot.sellStocks(numberStocksDisney, "Disney");
-						 System.out.println("Computer sold "+numberStocks+" Of Disney");
+						 System.out.print(" sold "+numberStocks+" Disney");
 					 } 
 					 if(applePrice>appleBoughtPrice && numberStocksApple>0 )
 					 {
-						 robot.sellStocks(numberStocksApple, "Apple");
-						 System.out.println("Computer sold "+numberStocks+" Of Apple");
+						 robot.sellStocks(numberStocksApple,"Apple");
+						 System.out.print(" sold "+numberStocks+" Apple");
 					 }
+					 
 					 
 					 //buying stocks
 					 if(yahooPrice<=2)
@@ -178,7 +217,7 @@ public class Runner
 						 yahooBoughtPrice=yahooPrice+2;
 						 robot.buyStocks(numberStocks, "Yahoo");
 						 numberStocksYahoo+=numberStocks;
-						 System.out.println("Computer bought "+numberStocks+" Of Yahoo");
+						 System.out.print(" bought "+numberStocks+" Yahoo,");
 					 }
 					 
 					 
@@ -187,15 +226,15 @@ public class Runner
 						 googleBoughtPrice=googlePrice+2;
 						 robot.buyStocks(numberStocks, "Google");
 						 numberStocksGoogle+=numberStocks;
-						 System.out.println("Computer bought "+numberStocks+" Of Google");
-					 } 
+						 System.out.print(" bought "+numberStocks+" Google,");
+					 }  
 					 
 					 if(disneyPrice<=2)
 					 {
 						 disneyBoughtPrice=disneyPrice+2;
 						 robot.buyStocks(numberStocks, "Disney");
 						 numberStocksDisney=numberStocks;
-						 System.out.println("Computer bought "+numberStocks+" Of Disney");
+						 System.out.print(" bought "+numberStocks+" Disney,");
 					 } 
 				
 					 if(applePrice<=2)
@@ -203,8 +242,10 @@ public class Runner
 						 appleBoughtPrice=disneyPrice+2;
 						 robot.buyStocks(numberStocks, "Apple");
 						 numberStocksApple+=numberStocks;
-						 System.out.println("Computer bought "+numberStocks+" Of Apple");
+						 System.out.print(" bought "+numberStocks+" Apple,");
 					 } 
+					 System.out.println("");
+					 System.out.println("");
 				 }
 					
 				 
