@@ -214,7 +214,7 @@ public class Runner
 					 //buying stocks
 					 if(yahooPrice<=2)
 					 {
-						 yahooBoughtPrice=yahooPrice+2;
+						 yahooBoughtPrice=yahooPrice;
 						 robot.buyStocks(numberStocks, "Yahoo");
 						 numberStocksYahoo+=numberStocks;
 						 System.out.print(" bought "+numberStocks+" Yahoo,");
@@ -223,7 +223,7 @@ public class Runner
 					 
 					 if(googlePrice<=2)
 					 {
-						 googleBoughtPrice=googlePrice+2;
+						 googleBoughtPrice=googlePrice;
 						 robot.buyStocks(numberStocks, "Google");
 						 numberStocksGoogle+=numberStocks;
 						 System.out.print(" bought "+numberStocks+" Google,");
@@ -231,7 +231,7 @@ public class Runner
 					 
 					 if(disneyPrice<=2)
 					 {
-						 disneyBoughtPrice=disneyPrice+2;
+						 disneyBoughtPrice=disneyPrice;
 						 robot.buyStocks(numberStocks, "Disney");
 						 numberStocksDisney=numberStocks;
 						 System.out.print(" bought "+numberStocks+" Disney,");
@@ -239,7 +239,7 @@ public class Runner
 				
 					 if(applePrice<=2)
 					 {
-						 appleBoughtPrice=disneyPrice+2;
+						 appleBoughtPrice=disneyPrice;
 						 robot.buyStocks(numberStocks, "Apple");
 						 numberStocksApple+=numberStocks;
 						 System.out.print(" bought "+numberStocks+" Apple,");
